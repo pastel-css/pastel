@@ -1,14 +1,30 @@
 {
-  "name": "@pastel/core",
+  "name": "@pastelcss/core",
   "version": "0.0.0",
+  "author": "Martin Petrov",
+  "keywords": [
+    "css",
+    "css-in-js",
+    "js",
+    "library",
+    "pastel"
+  ],
   "description": "The CSS-in-JS library that does it right.",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "vite", 
+    "dev": "vite",
     "build": "vite build"
   },
   "devDependencies": {
     "vite": "^4.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spleafy/pastel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spleafy/pastel/issues"
+  },
+  "homepage": "https://github.com/spleafy/pastel#readme"
 }
