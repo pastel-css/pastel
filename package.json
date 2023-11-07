@@ -1,0 +1,14 @@
+{
+  "name": "@pastel/core",
+  "version": "0.0.0",
+  "description": "The CSS-in-JS library that does it right.",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite", 
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0"
+  }
+}
