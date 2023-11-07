@@ -10,7 +10,6 @@
     "pastel"
   ],
   "description": "The CSS-in-JS library that does it right.",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -23,6 +22,12 @@
     "type": "git",
     "url": "git+https://github.com/spleafy/pastel.git"
   },
+  "type": "module",
+  "files": [
+    "dist/*"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.mjs",
   "bugs": {
     "url": "https://github.com/spleafy/pastel/issues"
   },
