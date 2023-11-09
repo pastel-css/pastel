@@ -11,6 +11,6 @@ MIT
 
 ---
 
-> GitHub [@pastelcss](https://github.com/pastelcss) &nbsp;&middot;&nbsp;
+> GitHub [@pastelcss](https://github.com/pastel-css) &nbsp;&middot;&nbsp;
 > Twitter [@pastelcss](https://twitter.com/pastelcss) &nbsp;&middot;&nbsp;
 > Reddit [r/pastelcss](https://www.reddit.com/r/pastelcss/)
