@@ -195,9 +195,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pastel/core@workspace:.":
+"@pastel-css/core@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@pastel/core@workspace:."
+  resolution: "@pastel-css/core@workspace:."
   dependencies:
     vite: ^4.5.0
   languageName: unknown
