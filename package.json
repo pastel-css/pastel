@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/spleafy/pastel/issues"
   },
-  "homepage": "https://github.com/spleafy/pastel#readme"
+  "homepage": "https://github.com/spleafy/pastel#readme",
+  "dependencies": {
+    "vite-plugin-dts": "^3.6.3"
+  }
 }

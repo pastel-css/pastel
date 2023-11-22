@@ -14,6 +14,8 @@ const toCss = (
     global: false,
   }
 ) => {
+  // TODO: Return a complex object with properties
+
   let css = "";
 
   const sl = !options.global ? `.${selector}` : selector;
@@ -41,7 +43,7 @@ const toCss = (
       }
     } else {
       options.topLevel && (css += `${sl} {\n`);
-      css += `  ${toKebabCase(key)}: ${JSON.stringify(value)},\n`;
+      css += `  ${toKebabCase(key)}: ${value};\n`;
       options.topLevel && (css += "}\n");
     }
   }
