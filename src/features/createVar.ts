@@ -2,8 +2,8 @@
 import toCss from "../transform/toCss";
 import toVariable from "../transform/toVariable";
 // Helper
-import injector from "../helper/injector";
-import className from "../helper/className";
+import injector from "../foundation/injector";
+import className from "../foundation/className";
 
 const inject = injector();
 

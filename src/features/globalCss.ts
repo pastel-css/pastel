@@ -1,7 +1,7 @@
 // Transform
 import toCss from "../transform/toCss";
 // Helper
-import injector from "../helper/injector";
+import injector from "../foundation/injector";
 // Types
 import { PastelStyles } from "../types";
 
