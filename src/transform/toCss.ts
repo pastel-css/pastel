@@ -66,7 +66,7 @@ const parseValue = (rule: string, value: string | number) => {
 
     return match ? parseInt(match[0]) : 0;
   } else {
-    return value;
+    return typeof value === "number" ? value.toString() + "px" : value;
   }
 };
 
