@@ -1,4 +1,4 @@
-// Helper
+// Utility
 import tryCatch from "../utility/tryCatch";
 
 const injector = () => {
@@ -19,6 +19,7 @@ const injector = () => {
           styleElement.textContent += style.css;
         }
       } else {
+        styleElement.setAttribute("type", "text/css");
         styleElement.textContent = style.css;
         styleElement.className = id;
         head.appendChild(styleElement);

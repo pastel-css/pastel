@@ -1,7 +1,7 @@
 // Transform
 import toCss from "../transform/toCss";
 import toVariable from "../transform/toVariable";
-// Helper
+// Utility
 import injector from "../foundation/injector";
 import className from "../foundation/className";
 
@@ -12,16 +12,9 @@ const createVar = (selector: string = "*", value: string | number = "") => {
 
   const varName = toVariable(id);
 
-  const result = toCss(
-    selector,
-    {
-      [varName]: value,
-    },
-    {
-      topLevel: true,
-      global: true,
-    }
-  );
+  const result = toCss(selector, {
+    [varName]: value,
+  } as any);
 
   inject({
     id: varName,

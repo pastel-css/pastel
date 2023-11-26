@@ -1,6 +1,6 @@
 // Transform
 import toCss from "../transform/toCss";
-// Helper
+// Utility
 import className from "../foundation/className";
 import injector from "../foundation/injector";
 // Types
@@ -9,11 +9,9 @@ import { PastelStyles, PastelCssOptions } from "../types";
 const inject = injector();
 
 const css = (styles: PastelStyles, options?: PastelCssOptions) => {
-  // TODO: Fix return value of toCss and of this function
-
   const cls = className(options?.prefix);
 
-  const result = toCss(cls, styles);
+  const result = toCss("." + cls, styles);
 
   inject({
     id: cls,
