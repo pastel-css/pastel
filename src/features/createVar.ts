@@ -7,7 +7,7 @@ import className from "../foundation/className";
 
 const inject = injector();
 
-const createVar = (selector: string = "*", value: string | number = "") => {
+const createVar = (selector: string = ":root", value: string | number = "") => {
   const id = className();
 
   const varName = toVariable(id);
