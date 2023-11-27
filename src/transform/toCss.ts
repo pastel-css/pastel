@@ -1,5 +1,6 @@
 // Transform
 import toKebabCase from "./toKebabCase";
+import toPolyfill, { ToPolyfillType } from "./toPolyfill";
 // Utility
 import isAtLike from "../utility/isAtLike";
 import isPseudoLike from "../utility/isPseudoLike";
@@ -95,6 +96,20 @@ const toCss = (selectors: string | string[], styles: PastelStyles) => {
       );
       continue;
     } else {
+      const polyfill = toPolyfill[key as keyof ToPolyfillType];
+
+      if (polyfill) {
+        const polyfilled = polyfill(
+          parseValue(key, styles[key as keyof PastelStyles] as any)
+        );
+
+        for (const poly in polyfilled) {
+          props += `${poly}: ${polyfilled[poly]};\n`;
+        }
+
+        continue;
+      }
+
       props += `${toKebabCase(key)}: ${parseValue(
         key,
         styles[key as keyof PastelStyles] as string | number
