@@ -3,8 +3,6 @@ const clamp = (value: string | number, min: number, max: number) => {
 
   const numeric = match ? parseFloat(match[1]) : 0;
 
-  console.log(numeric, match);
-
   const prefix = match ? match[2] : "";
 
   if (numeric < min) {

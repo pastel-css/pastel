@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 
 import * as utils from "../src/features/utils";
 
-describe("utils.clamp tests", () => {
+describe("clamp tests", () => {
   // Test case 1: Clamping a value below the minimum
   it("Clamps a value below the minimum", () => {
     const result = utils.clamp("-5px", 0, 10);
@@ -50,5 +50,53 @@ describe("utils.clamp tests", () => {
     const result = utils.clamp("7", 0, 10);
     const expected = "7";
     expect(result).toEqual(expected);
+  });
+});
+
+describe("contrast tests", () => {
+  it("should adjust luminance for increased contrast", () => {
+    const color = "#aabbcc"; // Example color
+    const delta = 10; // Increase contrast by 10%
+
+    const adjustedColor = utils.contrast(color, delta);
+
+    // Perform your assertion here based on the expected result
+    // For example, you might want to check that the adjusted color is different from the original
+    expect(adjustedColor).not.toBe(color);
+  });
+
+  it("should handle decreased contrast", () => {
+    const color = "#aabbcc"; // Example color
+    const delta = -10; // Decrease contrast by 10%
+
+    const adjustedColor = utils.contrast(color, delta);
+
+    // Perform your assertion here based on the expected result
+    // For example, you might want to check that the adjusted color is different from the original
+    console.log(adjustedColor);
+
+    expect(adjustedColor).not.toBe(color);
+  });
+
+  it("should handle maximum luminance", () => {
+    const color = "#ffffff"; // White color
+    const delta = -10; // Decrease contrast by 10%
+
+    const adjustedColor = utils.contrast(color, delta);
+
+    // Perform your assertion here based on the expected result
+    // For example, you might want to check that the adjusted color is still white
+    expect(adjustedColor).toBe("#747474");
+  });
+
+  it("should handle minimum luminance", () => {
+    const color = "#000000"; // Black color
+    const delta = -10; // Decrease contrast by 10%
+
+    const adjustedColor = utils.contrast(color, delta);
+
+    // Perform your assertion here based on the expected result
+    // For example, you might want to check that the adjusted color is still black
+    expect(adjustedColor).toBe("#8c8c8c");
   });
 });

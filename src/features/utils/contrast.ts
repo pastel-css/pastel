@@ -1,33 +1,31 @@
 import convert from "./convert";
-// Transform
-import rgbToHex from "./transform/rgbToHex";
 import hexToRgb from "./transform/hexToRgb";
+import rgbToHex from "./transform/rgbToHex";
 
-const contrast = (color: string, contrastDelta: number): string => {
+const contrast = (color: string, delta: number): string => {
   // Extract individual color components (R, G, B)
   const components = hexToRgb(convert(color, "hex"));
   const red = components[0];
   const green = components[1];
   const blue = components[2];
 
-  // Calculate luminance (brightness) using the ITU-R BT.709 formula
-  const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+  const convertedDelta = (delta / 100) * 510 - 255;
 
-  // Adjust luminance based on the specified contrast delta
-  const adjustedLuminance = Math.max(
-    0,
-    Math.min(1, luminance * (1 + contrastDelta / 100))
-  );
+  const factor =
+    (259 * (convertedDelta + 255)) / (255 * (259 - convertedDelta));
 
-  // Convert adjusted luminance back to color components
-  const adjustedRed = ((adjustedLuminance - 0.00456621) / 0.00392156) * 255;
-  const adjustedGreen = ((adjustedLuminance - 0.00153632) / 0.00557939) * 255;
-  const adjustedBlue = 1.0 - adjustedRed - adjustedGreen;
+  // Adjust color components based on the new luminance
+  const adjustedRed = Math.round(factor * (red - 128) + 128);
+  const adjustedGreen = Math.round(factor * (green - 128) + 128);
+  const adjustedBlue = Math.round(factor * (blue - 128) + 128);
 
-  // Clamp color components within [0, 255] range
   const clampedRed = Math.max(0, Math.min(255, adjustedRed));
   const clampedGreen = Math.max(0, Math.min(255, adjustedGreen));
   const clampedBlue = Math.max(0, Math.min(255, adjustedBlue));
+
+  console.log("red", clampedRed);
+  console.log("green", clampedGreen);
+  console.log("blue", clampedBlue);
 
   // Reconstruct and return the adjusted color value
   return rgbToHex(clampedRed, clampedGreen, clampedBlue);
