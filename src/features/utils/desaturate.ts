@@ -1,22 +1,32 @@
 import convert from "./convert";
-// Transform
-import hexToRgb from "./transform/hexToRgb";
-import rgbToHex from "./transform/rgbToHex";
+// Tranform
+import hexToHsl from "./transform/hexToHsl";
+import hslToHex from "./transform/hslToHex";
 
 const desaturate = (color: string, amount: number): string => {
-  // Convert color to RGB
-  const rgb = hexToRgb(convert(color, "hex"));
+  // Ensure the amount is valid (between 0 and 100)
+  if (amount < 0 || amount > 100) {
+    throw new Error("Desaturation amount must be between 0 and 100.");
+  }
 
-  // Calculate the average of the red, green, and blue values
-  const average = (rgb[0] + rgb[1] + rgb[2]) / 3;
+  // Convert color to HSL representation
+  const hsl = hexToHsl(convert(color, "hex"));
+  const hue = hsl[0];
+  const saturation = hsl[1];
+  const lightness = hsl[2];
 
-  // Adjust the red, green, and blue values towards the average
-  const adjustedRed = Math.min(255, rgb[0] + (average - rgb[0]) * amount);
-  const adjustedGreen = Math.min(255, rgb[1] + (average - rgb[1]) * amount);
-  const adjustedBlue = Math.min(255, rgb[2] + (average - rgb[2]) * amount);
+  // Calculate the desaturation factor
+  const desaturationFactor = 1 - amount / 100;
 
-  // Convert the adjusted RGB values back to hex
-  const desaturatedColor = rgbToHex(adjustedRed, adjustedGreen, adjustedBlue);
+  // Apply desaturation factor to saturation
+  const desaturatedSaturation = Math.max(0, saturation * desaturationFactor);
+
+  // Convert desaturated HSL representation back to RGB
+  const desaturatedColor = hslToHex(
+    hue,
+    desaturatedSaturation + "%",
+    lightness + "%"
+  );
 
   return desaturatedColor;
 };

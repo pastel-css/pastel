@@ -73,7 +73,6 @@ describe("contrast tests", () => {
 
     // Perform your assertion here based on the expected result
     // For example, you might want to check that the adjusted color is different from the original
-    console.log(adjustedColor);
 
     expect(adjustedColor).not.toBe(color);
   });
@@ -157,7 +156,7 @@ describe("convert tests", () => {
 
   it("Converts HSL to CMYK", () => {
     expect(utils.convert("hsl(240, 100%, 50%)", "cmyk")).toBe(
-      "cmyk(0%, 100%, 100%, 0%)"
+      "cmyk(100%, 100%, 0%, 0%)"
     );
   });
 });
@@ -166,12 +165,32 @@ describe("darken tests", () => {
   it("should darken a hex color by a specified percentage", () => {
     const originalColor = "#FF0000"; // Red
     const darkenedColor = utils.darken(originalColor, 80);
-    expect(darkenedColor).toBe("#471414"); // Dark red
+    expect(darkenedColor).toBe("#330000"); // Dark red
   });
 
   it("should darken an RGB color by a specified percentage", () => {
     const originalColor = "rgb(255, 0, 0)"; // Red
     const darkenedColor = utils.darken(originalColor, 50);
-    expect(darkenedColor).toBe("#9f2020"); // Dark red
+    expect(darkenedColor).toBe("#800000"); // Dark red
+  });
+});
+
+describe("desaturate tests", () => {
+  it("should desaturate a red color by a specified percentage", () => {
+    const originalColor = "#FF0000"; // Red
+    const desaturatedColor = utils.desaturate(originalColor, 50);
+    expect(desaturatedColor).toBe("#bf4040"); // Darker red
+  });
+
+  it("should desaturate a green color by a specified percentage", () => {
+    const originalColor = "#00FF00"; // Green
+    const desaturatedColor = utils.desaturate(originalColor, 50);
+    expect(desaturatedColor).toBe("#40bf40"); // Darker green
+  });
+
+  it("should desaturate a blue color by a specified percentage", () => {
+    const originalColor = "#0000FF"; // Blue
+    const desaturatedColor = utils.desaturate(originalColor, 50);
+    expect(desaturatedColor).toBe("#4040bf"); // Darker blue
   });
 });
