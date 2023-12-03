@@ -1,5 +1,13 @@
+import tryCatch from "../../utility/tryCatch";
+
 const px = (rem: number): number => {
-  const fontSize = parseFloat(document.documentElement.style.fontSize);
+  let fontSize = 16;
+
+  tryCatch(
+    () => (fontSize = parseFloat(document.documentElement.style.fontSize)),
+    "Document is not defined!"
+  );
+
   return rem * fontSize;
 };
 

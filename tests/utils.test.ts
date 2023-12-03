@@ -314,3 +314,13 @@ describe("opacity tests", () => {
     expect(actualColor).toEqual(expectedColor);
   });
 });
+
+describe("px tests", () => {
+  it("should convert rem values to corresponding pixel values", () => {
+    const fontSize = 16; // Assuming default font size of 16px
+    const remValue = 1.5;
+    const expectedPixelValue = fontSize * remValue;
+    const actualPixelValue = utils.px(remValue);
+    expect(actualPixelValue).toEqual(expectedPixelValue);
+  });
+});
