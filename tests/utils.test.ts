@@ -194,3 +194,19 @@ describe("desaturate tests", () => {
     expect(desaturatedColor).toBe("#4040bf"); // Darker blue
   });
 });
+
+describe("fr tests", () => {
+  it("should return a string representation of a number divided by 4 and appended with 'rem'", () => {
+    const inputNumber = 16;
+    const expectedOutput = "4rem";
+    const actualOutput = utils.fr(inputNumber);
+    expect(actualOutput).toEqual(expectedOutput);
+  });
+
+  it("should return the original input if it is not a number", () => {
+    const inputString = "hello";
+    const expectedOutput = "hello";
+    const actualOutput = utils.fr(inputString);
+    expect(actualOutput).toEqual(expectedOutput);
+  });
+});
