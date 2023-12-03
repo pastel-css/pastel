@@ -23,10 +23,6 @@ const contrast = (color: string, delta: number): string => {
   const clampedGreen = Math.max(0, Math.min(255, adjustedGreen));
   const clampedBlue = Math.max(0, Math.min(255, adjustedBlue));
 
-  console.log("red", clampedRed);
-  console.log("green", clampedGreen);
-  console.log("blue", clampedBlue);
-
   // Reconstruct and return the adjusted color value
   return rgbToHex(clampedRed, clampedGreen, clampedBlue);
 };

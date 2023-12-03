@@ -10,6 +10,8 @@ import hslToCmyk from "./transform/hslToCmyk";
 import hexToRgb from "./transform/hexToRgb";
 import hexToHsl from "./transform/hexToHsl";
 import hexToCmyk from "./transform/hexToCmyk";
+// Helper
+import strip from "../../utility/strip";
 
 const isValidColorFormat = (format: string): boolean => {
   return ["hex", "rgb", "hsl", "cmyk"].includes(format);
@@ -46,30 +48,26 @@ const convert = (
   } else if (color.startsWith("hsl")) {
     const match: any = /hsl\(([^,]+),([^,]+%),([^,]+%)\)/.exec(color);
 
-    const parsed = [
-      parseFloat(match[2]),
-      parseFloat(match[3]),
-      parseFloat(match[4]),
-    ];
+    const parsed = [parseFloat(match[1]), strip(match[2]), strip(match[3])];
 
     if (format === "hex") {
-      const converted = hslToHex(parsed[0], parsed[1], parsed[2]);
+      const converted = hslToHex(parsed[0] as number, parsed[1], parsed[2]);
       return converted;
     } else if (format === "rgb") {
-      const converted = hslToRgb(parsed[0], parsed[1], parsed[2]);
+      const converted = hslToRgb(parsed[0] as number, parsed[1], parsed[2]);
       return `rgb(${converted[0]}, ${converted[1]}, ${converted[2]})`;
     } else if (format === "cmyk") {
-      const converted = hslToCmyk(parsed[0], parsed[1], parsed[2]);
+      const converted = hslToCmyk(parsed[0] as number, parsed[1], parsed[2]);
       return `cmyk(${converted[0]}%, ${converted[1]}%, ${converted[2]}%, ${converted[3]}%)`;
     }
   } else if (color.startsWith("cmyk")) {
-    const match: any = /cmyk\(([^,]+),([^,]+),([^,]+),([^,]+%)\)/.exec(color);
+    const match: any = /cmyk\(([^,]+),([^,]+),([^,]+),([^,]+)\)/.exec(color);
 
     const parsed = [
-      parseFloat(match[2]),
-      parseFloat(match[3]),
-      parseFloat(match[4]),
-      parseFloat(match[5]),
+      strip(match[1]),
+      strip(match[2]),
+      strip(match[3]),
+      strip(match[4]),
     ];
 
     if (format === "hex") {
@@ -85,7 +83,7 @@ const convert = (
   } else if (color.startsWith("#")) {
     if (format === "cmyk") {
       const converted = hexToCmyk(color);
-      `cmyk(${converted[0]}%, ${converted[1]}%, ${converted[2]}%, ${converted[3]}%)`;
+      return `cmyk(${converted[0]}%, ${converted[1]}%, ${converted[2]}%, ${converted[3]}%)`;
     } else if (format === "rgb") {
       const converted = hexToRgb(color);
       return `rgb(${converted[0]}, ${converted[1]}, ${converted[2]})`;

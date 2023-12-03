@@ -3,8 +3,8 @@ import rgbToHex from "./rgbToHex";
 
 const hslToHex = (
   hue: number,
-  saturation: number,
-  lightness: number
+  saturation: number | string,
+  lightness: number | string
 ): string => {
   // Convert HSL to RGB
   const rgb = hslToRgb(hue, saturation, lightness);

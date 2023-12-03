@@ -1,28 +1,22 @@
+import percentToFraction from "./percentToFraction";
+
 const cmykToRgb = (
-  cyan: number,
-  magenta: number,
-  yellow: number,
-  black: number
+  cyan: number | string,
+  magenta: number | string,
+  yellow: number | string,
+  black: number | string
 ): [number, number, number] => {
-  if (cyan < 0 || cyan > 1) {
-    throw new Error("Invalid cyan value: " + cyan);
-  }
+  const convertedCyan = percentToFraction(cyan);
 
-  if (magenta < 0 || magenta > 1) {
-    throw new Error("Invalid magenta value: " + magenta);
-  }
+  const convertedMagenta = percentToFraction(magenta);
 
-  if (yellow < 0 || yellow > 1) {
-    throw new Error("Invalid yellow value: " + yellow);
-  }
+  const convertedYellow = percentToFraction(yellow);
 
-  if (black < 0 || black > 1) {
-    throw new Error("Invalid black value: " + black);
-  }
+  const convertedBlack = percentToFraction(black);
 
-  const red = 255 * (1 - cyan) * (1 - black);
-  const green = 255 * (1 - magenta) * (1 - black);
-  const blue = 255 * (1 - yellow) * (1 - black);
+  const red = Math.round(255 * (1 - convertedCyan) * (1 - convertedBlack));
+  const green = Math.round(255 * (1 - convertedMagenta) * (1 - convertedBlack));
+  const blue = Math.round(255 * (1 - convertedYellow) * (1 - convertedBlack));
 
   return [red, green, blue];
 };

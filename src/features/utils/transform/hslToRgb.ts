@@ -1,21 +1,16 @@
+import percentToFraction from "./percentToFraction";
+
 const hslToRgb = (
   hue: number,
-  saturation: number,
-  lightness: number
+  saturation: number | string,
+  lightness: number | string
 ): [number, number, number] => {
-  if (hue < 0 || hue > 360) {
-    throw new Error("Invalid hue value: " + hue);
-  }
+  const convertedSaturation = percentToFraction(saturation);
 
-  if (saturation < 0 || saturation > 1) {
-    throw new Error("Invalid saturation value: " + saturation);
-  }
+  const convertedLightness = percentToFraction(lightness);
 
-  if (lightness < 0 || lightness > 1) {
-    throw new Error("Invalid lightness value: " + lightness);
-  }
-
-  const chroma = (1 - Math.abs(2 * lightness - 1)) * saturation;
+  const chroma =
+    (1 - Math.abs(2 * convertedLightness - 1)) * convertedSaturation;
   const h = hue / 60;
   const secondaries = chroma * (1 - Math.abs((h % 2) - 1));
 
@@ -41,7 +36,7 @@ const hslToRgb = (
       break;
   }
 
-  const lightnessAdjustment = lightness * (1 - chroma);
+  const lightnessAdjustment = convertedLightness * (1 - chroma);
   return [
     (rgb[0] + lightnessAdjustment) * 255,
     (rgb[1] + lightnessAdjustment) * 255,

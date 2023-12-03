@@ -4,8 +4,12 @@ const calculateLightness = (
   green: number,
   blue: number
 ): number => {
-  const max = Math.max(red, green, blue);
-  const min = Math.min(red, green, blue);
+  const normalizedRed = red / 255;
+  const normalizedGreen = green / 255;
+  const normalizedBlue = blue / 255;
+
+  const max = Math.max(normalizedRed, normalizedGreen, normalizedBlue);
+  const min = Math.min(normalizedRed, normalizedGreen, normalizedBlue);
 
   return (max + min) / 2;
 };

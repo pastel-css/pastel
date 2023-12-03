@@ -3,8 +3,8 @@ import rgbToCmyk from "./rgbToCmyk";
 
 const hslToCmyk = (
   hue: number,
-  saturation: number,
-  lightness: number
+  saturation: number | string,
+  lightness: number | string
 ): [number, number, number, number] => {
   // Convert HSL to RGB
   const rgb = hslToRgb(hue, saturation, lightness);

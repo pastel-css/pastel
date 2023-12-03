@@ -2,10 +2,10 @@ import cmykToRgb from "./cmykToRgb";
 import rgbToHsl from "./rgbToHsl";
 
 const cmykToHsl = (
-  cyan: number,
-  magenta: number,
-  yellow: number,
-  black: number
+  cyan: number | string,
+  magenta: number | string,
+  yellow: number | string,
+  black: number | string
 ): [number, number, number] => {
   // Convert CMYK to RGB
   const rgb = cmykToRgb(cyan, magenta, yellow, black);

@@ -100,3 +100,64 @@ describe("contrast tests", () => {
     expect(adjustedColor).toBe("#8c8c8c");
   });
 });
+
+describe("convert tests", () => {
+  it("Converts RGB to Hex", () => {
+    expect(utils.convert("rgb(255, 0, 0)", "hex")).toBe("#ff0000");
+  });
+
+  it("Converts HSL to Hex", () => {
+    expect(utils.convert("hsl(120, 100%, 50%)", "hex")).toBe("#00ff00");
+  });
+
+  it("Converts CMYK to Hex", () => {
+    expect(utils.convert("cmyk(100%, 0%, 100%, 0%)", "hex")).toBe("#00ff00");
+  });
+
+  // Test cases for converting to RGB format
+  it("Converts Hex to RGB", () => {
+    expect(utils.convert("#ff0000", "rgb")).toBe("rgb(255, 0, 0)");
+  });
+
+  it("Converts HSL to RGB", () => {
+    expect(utils.convert("hsl(120, 100%, 50%)", "rgb")).toBe("rgb(0, 255, 0)");
+  });
+
+  it("Converts CMYK to RGB", () => {
+    expect(utils.convert("cmyk(100%, 0%, 100%, 0%)", "rgb")).toBe(
+      "rgb(0, 255, 0)"
+    );
+  });
+
+  // Test cases for converting to HSL format
+  it("Converts Hex to HSL", () => {
+    expect(utils.convert("#ff0000", "hsl")).toBe("hsl(0, 100%, 50%)");
+  });
+
+  it("Converts RGB to HSL", () => {
+    expect(utils.convert("rgb(0, 255, 0)", "hsl")).toBe("hsl(120, 100%, 50%)");
+  });
+
+  it("Converts CMYK to HSL", () => {
+    expect(utils.convert("cmyk(100%, 0%, 100%, 0%)", "hsl")).toBe(
+      "hsl(120, 100%, 50%)"
+    );
+  });
+
+  // Test cases for converting to CMYK format
+  it("Converts Hex to CMYK", () => {
+    expect(utils.convert("#ff0000", "cmyk")).toBe("cmyk(0%, 100%, 100%, 0%)");
+  });
+
+  it("Converts RGB to CMYK", () => {
+    expect(utils.convert("rgb(0, 255, 0)", "cmyk")).toBe(
+      "cmyk(100%, 0%, 100%, 0%)"
+    );
+  });
+
+  it("Converts HSL to CMYK", () => {
+    expect(utils.convert("hsl(240, 100%, 50%)", "cmyk")).toBe(
+      "cmyk(0%, 100%, 100%, 0%)"
+    );
+  });
+});

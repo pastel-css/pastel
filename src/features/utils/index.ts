@@ -1,5 +1,6 @@
 export { default as clamp } from "./clamp";
 export { default as contrast } from "./contrast";
+export { default as convert } from "./convert";
 export { default as darken } from "./darken";
 export { default as desaturate } from "./desaturate";
 export { default as format } from "./convert";

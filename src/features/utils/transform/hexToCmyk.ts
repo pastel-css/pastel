@@ -7,6 +7,7 @@ const hexToCmyk = (color: string): [number, number, number, number] => {
 
   // Convert RGB to CMYK
   const cmyk = rgbToCmyk(rgb[0], rgb[1], rgb[2]);
+
   return cmyk;
 };
 
