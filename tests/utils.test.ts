@@ -236,3 +236,38 @@ describe("hue tests", () => {
     expect(actualColor).toEqual(expectedColor);
   });
 });
+
+describe("invert tests", () => {
+  it("should invert the color of red", () => {
+    const originalColor = "#FF0000"; // Red
+    const expectedColor = "#00ffff"; // Blue
+    const actualColor = utils.invert(originalColor);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should invert the color of green", () => {
+    const originalColor = "#00FF00"; // Green
+    const expectedColor = "#ff00ff"; // Magenta
+    const actualColor = utils.invert(originalColor);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should invert the color of blue", () => {
+    const originalColor = "#0000FF"; // Blue
+    const expectedColor = "#ffff00"; // Yellow
+    const actualColor = utils.invert(originalColor);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should handle white and black colors", () => {
+    const originalWhiteColor = "#FFFFFF"; // White
+    const expectedWhiteColor = "#000000"; // Black
+    const actualWhiteColor = utils.invert(originalWhiteColor);
+    expect(actualWhiteColor).toEqual(expectedWhiteColor);
+
+    const originalBlackColor = "#000000"; // Black
+    const expectedBlackColor = "#ffffff"; // White
+    const actualBlackColor = utils.invert(originalBlackColor);
+    expect(actualBlackColor).toEqual(expectedBlackColor);
+  });
+});
