@@ -210,3 +210,29 @@ describe("fr tests", () => {
     expect(actualOutput).toEqual(expectedOutput);
   });
 });
+
+describe("hue tests", () => {
+  it("should shift the hue of a red color by a positive delta", () => {
+    const originalColor = "#FF0000"; // Red
+    const hueDelta = 30;
+    const expectedColor = "#ff8000"; // Orange
+    const actualColor = utils.hue(originalColor, hueDelta);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should shift the hue of a green color by a negative delta", () => {
+    const originalColor = "#00FF00"; // Green
+    const hueDelta = -30;
+    const expectedColor = "#80ff00"; // Light green
+    const actualColor = utils.hue(originalColor, hueDelta);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should wrap the hue value when shifting beyond 360 degrees", () => {
+    const originalColor = "#0000FF"; // Blue
+    const hueDelta = 390;
+    const expectedColor = "#8000ff"; // Purple
+    const actualColor = utils.hue(originalColor, hueDelta);
+    expect(actualColor).toEqual(expectedColor);
+  });
+});
