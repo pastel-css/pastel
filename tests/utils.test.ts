@@ -334,3 +334,23 @@ describe("rem tests", () => {
     expect(actualPixelValue).toEqual(expectedPixelValue);
   });
 });
+
+describe("saturate tests", () => {
+  it("should saturate a red color by a specified amount", () => {
+    const originalColor = "#bf4040"; // Red
+    const saturatedColor = utils.saturate(originalColor, 50);
+    expect(saturatedColor).toBe("#ff0000"); // More vivid red
+  });
+
+  it("should saturate a green color by a specified amount", () => {
+    const originalColor = "#40bf40"; // Green
+    const saturatedColor = utils.saturate(originalColor, 50);
+    expect(saturatedColor).toBe("#00ff00"); // More vivid green
+  });
+
+  it("should saturate a blue color by a specified amount", () => {
+    const originalColor = "#4040bf"; // Blue
+    const saturatedColor = utils.saturate(originalColor, 50);
+    expect(saturatedColor).toBe("#0000ff"); // More vivid blue
+  });
+});
