@@ -159,6 +159,65 @@ describe("convert tests", () => {
       "cmyk(100%, 100%, 0%, 0%)"
     );
   });
+
+  it("Converts RGB to HSL with different input formats", () => {
+    const rgbValues = ["rgb(0, 255, 0)", "rgb(0, 255,0)", "rgb( 0,255,0)"];
+    for (const rgbValue of rgbValues) {
+      expect(utils.convert(rgbValue, "hsl")).toBe("hsl(120, 100%, 50%)");
+    }
+  });
+
+  // RGB to Hex conversion tests
+  it("Converts RGB to Hex with different input formats", () => {
+    const rgbValues = ["rgb(255, 0, 0)", "rgb(255,0, 0)", "rgb(255, 0 ,0 )"];
+    for (const rgbValue of rgbValues) {
+      expect(utils.convert(rgbValue, "hex")).toBe("#ff0000");
+    }
+  });
+
+  // RGB to CMYK conversion tests
+  it("Converts RGB to CMYK with different input formats", () => {
+    const rgbValues = ["rgb(0, 0, 255)", "rgb(0, 0, 255)", "rgb(0 , 0 , 255 )"];
+    for (const rgbValue of rgbValues) {
+      expect(utils.convert(rgbValue, "cmyk")).toBe("cmyk(100%, 100%, 0%, 0%)");
+    }
+  });
+
+  // HSL to RGB conversion tests
+  it("Converts HSL to RGB with different input formats", () => {
+    const hslValues = ["hsl(120, 100%, 50%)"];
+    for (const hslValue of hslValues) {
+      expect(utils.convert(hslValue, "rgb")).toBe("rgb(0, 255, 0)");
+    }
+  });
+
+  // HSL to Hex conversion tests
+  it("Converts HSL to Hex with different input formats", () => {
+    const hslValues = ["hsl(60, 100%, 50%)"];
+    for (const hslValue of hslValues) {
+      expect(utils.convert(hslValue, "hex")).toBe("#ffff00");
+    }
+  });
+
+  // HSL to CMYK conversion tests
+  it("Converts HSL to CMYK with different input formats", () => {
+    const hslValues = ["hsl(240, 100%, 50%)"];
+    for (const hslValue of hslValues) {
+      expect(utils.convert(hslValue, "cmyk")).toBe("cmyk(100%, 100%, 0%, 0%)");
+    }
+  });
+
+  // CMYK to RGB conversion tests
+  it("Converts CMYK to RGB with different input formats", () => {
+    const cmykValues = [
+      "cmyk(0%, 100%, 100%, 0%)",
+      "cmyk(0%, 100%, 100%, 0%)",
+      "cmyk( 0% , 100% , 100% , 0% )",
+    ];
+    for (const cmykValue of cmykValues) {
+      expect(utils.convert(cmykValue, "rgb")).toBe("rgb(255, 0, 0)");
+    }
+  });
 });
 
 describe("darken tests", () => {

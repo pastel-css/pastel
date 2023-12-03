@@ -48,7 +48,11 @@ const convert = (
   } else if (color.startsWith("hsl")) {
     const match: any = /hsl\(([^,]+),([^,]+%),([^,]+%)\)/.exec(color);
 
-    const parsed = [parseFloat(match[1]), strip(match[2]), strip(match[3])];
+    const parsed = [
+      parseFloat(strip(match[1])),
+      strip(match[2]),
+      strip(match[3]),
+    ];
 
     if (format === "hex") {
       const converted = hslToHex(parsed[0] as number, parsed[1], parsed[2]);
