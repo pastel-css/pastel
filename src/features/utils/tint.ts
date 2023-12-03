@@ -23,7 +23,8 @@ const tint = (color: string, amount: number): string => {
 
   // Saturate the lightened color to maintain vibrancy
   const lightenedColor = rgbToHex(lightenedRed, lightenedGreen, lightenedBlue);
-  const saturatedColor = saturate(lightenedColor, 0.5); // Adjust saturation to compensate for lightening
+
+  const saturatedColor = saturate(lightenedColor, 50); // Adjust saturation to compensate for lightening
 
   return saturatedColor;
 };

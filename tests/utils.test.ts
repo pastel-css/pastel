@@ -354,3 +354,43 @@ describe("saturate tests", () => {
     expect(saturatedColor).toBe("#0000ff"); // More vivid blue
   });
 });
+
+describe("shade tests", () => {
+  it("should darken a red color by a specified percentage", () => {
+    const originalColor = "#FF0000"; // Red
+    const shadedColor = utils.shade(originalColor, 50);
+    expect(shadedColor).toBe("#7f0000"); // Darker red
+  });
+
+  it("should darken a green color by a specified percentage", () => {
+    const originalColor = "#00FF00"; // Green
+    const shadedColor = utils.shade(originalColor, 50);
+    expect(shadedColor).toBe("#007f00"); // Darker green
+  });
+
+  it("should darken a blue color by a specified percentage", () => {
+    const originalColor = "#0000FF"; // Blue
+    const shadedColor = utils.shade(originalColor, 50);
+    expect(shadedColor).toBe("#00007f"); // Darker blue
+  });
+});
+
+describe("tint tests", () => {
+  it("should lighten a red color by a specified percentage", () => {
+    const originalColor = "#7f0000"; // Red
+    const tintedColor = utils.tint(originalColor, 50);
+    expect(tintedColor).toBe("#bf0000"); // Lighter red
+  });
+
+  it("should lighten a green color by a specified percentage", () => {
+    const originalColor = "#007f00"; // Green
+    const tintedColor = utils.tint(originalColor, 50);
+    expect(tintedColor).toBe("#00bf00"); // Lighter green
+  });
+
+  it("should lighten a blue color by a specified percentage", () => {
+    const originalColor = "#00007f"; // Blue
+    const tintedColor = utils.tint(originalColor, 50);
+    expect(tintedColor).toBe("#0000bf"); // Lighter blue
+  });
+});

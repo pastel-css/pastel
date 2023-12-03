@@ -23,7 +23,7 @@ const shade = (color: string, amount: number): string => {
 
   // Saturate the darkened color to maintain vibrancy
   const darkenedColor = rgbToHex(darkenedRed, darkenedGreen, darkenedBlue);
-  const saturatedColor = saturate(darkenedColor, 0.5); // Adjust saturation to compensate for darkening
+  const saturatedColor = saturate(darkenedColor, 50); // Adjust saturation to compensate for darkening
 
   return saturatedColor;
 };
