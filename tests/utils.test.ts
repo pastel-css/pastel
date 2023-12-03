@@ -324,3 +324,13 @@ describe("px tests", () => {
     expect(actualPixelValue).toEqual(expectedPixelValue);
   });
 });
+
+describe("rem tests", () => {
+  it("should convert px values to corresponding rem values", () => {
+    const fontSize = 16; // Assuming default font size of 16px
+    const px = 16;
+    const expectedPixelValue = fontSize / px;
+    const actualPixelValue = utils.rem(px);
+    expect(actualPixelValue).toEqual(expectedPixelValue);
+  });
+});
