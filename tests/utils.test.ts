@@ -271,3 +271,23 @@ describe("invert tests", () => {
     expect(actualBlackColor).toEqual(expectedBlackColor);
   });
 });
+
+describe("lighten tests", () => {
+  it("should lighten a red color by a specified percentage", () => {
+    const originalColor = "#FF0000"; // Red
+    const lightenedColor = utils.lighten(originalColor, 50);
+    expect(lightenedColor).toBe("#ff8080"); // Lighter red
+  });
+
+  it("should lighten a green color by a specified percentage", () => {
+    const originalColor = "#00FF00"; // Green
+    const lightenedColor = utils.lighten(originalColor, 50);
+    expect(lightenedColor).toBe("#80ff80"); // Lighter green
+  });
+
+  it("should lighten a blue color by a specified percentage", () => {
+    const originalColor = "#0000FF"; // Blue
+    const lightenedColor = utils.lighten(originalColor, 50);
+    expect(lightenedColor).toBe("#8080ff"); // Lighter blue
+  });
+});

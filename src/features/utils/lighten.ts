@@ -1,7 +1,7 @@
 import convert from "./convert";
 // Transform
-import hexToRgb from "./transform/hexToCmyk";
-import rgbToHex from "./transform/rgbToHex";
+import hexToHsl from "./transform/hexToHsl";
+import hslToHex from "./transform/hslToHex";
 
 const lighten = (color: string, amount: number): string => {
   // Ensure the amount is valid (between 0 and 100)
@@ -9,22 +9,20 @@ const lighten = (color: string, amount: number): string => {
     throw new Error("Lighten amount must be between 0 and 100.");
   }
 
-  // Extract color components (R, G, B)
-  const components = hexToRgb(convert(color, "hex"));
-  const red = components[0];
-  const green = components[1];
-  const blue = components[2];
+  // Convert color to HSL representation
+  const hsl = hexToHsl(convert(color, "hex"));
+  const hue = hsl[0];
+  const saturation = hsl[1];
+  const lightness = hsl[2];
 
   // Calculate the lightening factor
   const lighteningFactor = 1 + amount / 100;
 
-  // Apply lightening factor to each color component
-  const lightenedRed = Math.min(255, Math.round(red * lighteningFactor));
-  const lightenedGreen = Math.min(255, Math.round(green * lighteningFactor));
-  const lightenedBlue = Math.min(255, Math.round(blue * lighteningFactor));
+  // Apply lightening factor to lightness
+  const lightenedLightness = Math.min(100, lightness * lighteningFactor);
 
   // Reconstruct and return the lightened color value
-  return rgbToHex(lightenedRed, lightenedGreen, lightenedBlue);
+  return hslToHex(hue, saturation + "%", lightenedLightness + "%");
 };
 
 export default lighten;
