@@ -291,3 +291,26 @@ describe("lighten tests", () => {
     expect(lightenedColor).toBe("#8080ff"); // Lighter blue
   });
 });
+
+describe("opacity tests", () => {
+  it("should apply full opacity to a color", () => {
+    const originalColor = "#FF0000"; // Red
+    const expectedColor = "rgba(255, 0, 0, 1)"; // Red with full opacity
+    const actualColor = utils.opacity(originalColor, 1);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should apply half opacity to a color", () => {
+    const originalColor = "#00FF00"; // Green
+    const expectedColor = "rgba(0, 255, 0, 0.5)"; // Green with half opacity
+    const actualColor = utils.opacity(originalColor, 0.5);
+    expect(actualColor).toEqual(expectedColor);
+  });
+
+  it("should apply zero opacity to a color", () => {
+    const originalColor = "#0000FF"; // Blue
+    const expectedColor = "rgba(0, 0, 255, 0)"; // Blue with zero opacity (transparent)
+    const actualColor = utils.opacity(originalColor, 0);
+    expect(actualColor).toEqual(expectedColor);
+  });
+});
