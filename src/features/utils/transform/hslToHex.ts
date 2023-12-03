@@ -9,6 +9,10 @@ const hslToHex = (
   // Convert HSL to RGB
   const rgb = hslToRgb(hue, saturation, lightness);
 
+  console.log(hue, saturation, lightness);
+
+  console.log(rgb);
+
   // Convert RGB to hex
   return rgbToHex(rgb[0], rgb[1], rgb[2]);
 };

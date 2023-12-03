@@ -38,9 +38,9 @@ const hslToRgb = (
 
   const lightnessAdjustment = convertedLightness * (1 - chroma);
   return [
-    (rgb[0] + lightnessAdjustment) * 255,
-    (rgb[1] + lightnessAdjustment) * 255,
-    (rgb[2] + lightnessAdjustment) * 255,
+    Math.round((rgb[0] + lightnessAdjustment) * 255),
+    Math.round((rgb[1] + lightnessAdjustment) * 255),
+    Math.round((rgb[2] + lightnessAdjustment) * 255),
   ];
 };
 

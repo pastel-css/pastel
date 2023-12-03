@@ -161,3 +161,17 @@ describe("convert tests", () => {
     );
   });
 });
+
+describe("darken tests", () => {
+  it("should darken a hex color by a specified percentage", () => {
+    const originalColor = "#FF0000"; // Red
+    const darkenedColor = utils.darken(originalColor, 80);
+    expect(darkenedColor).toBe("#471414"); // Dark red
+  });
+
+  it("should darken an RGB color by a specified percentage", () => {
+    const originalColor = "rgb(255, 0, 0)"; // Red
+    const darkenedColor = utils.darken(originalColor, 50);
+    expect(darkenedColor).toBe("#9f2020"); // Dark red
+  });
+});
