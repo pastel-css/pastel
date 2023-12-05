@@ -1,8 +1,10 @@
 // Transform
 import toKebabCase from "./toKebabCase";
 import toPolyfill, { ToPolyfillType } from "./toPolyfill";
+import toPlainSelectors from "./toPlainSelectors";
 // Utility
 import isAtLike from "../utility/isAtLike";
+import isNestedSelectorLike from "../utility/isNestedSelectorLike";
 import isPseudoLike from "../utility/isPseudoLike";
 // Types
 import { PastelStyles } from "../types";
@@ -83,6 +85,8 @@ const toCss = (selectors: string | string[], styles: PastelStyles) => {
 
     const isPseudoRule = isPseudoLike(key);
 
+    const isNestedSelector = isNestedSelectorLike(key);
+
     if (isAtRule) {
       rules += `${key} { ${toCss(
         selector,
@@ -94,6 +98,11 @@ const toCss = (selectors: string | string[], styles: PastelStyles) => {
         selector + key,
         styles[key as keyof PastelStyles] as PastelStyles
       );
+      continue;
+    } else if (isNestedSelector) {
+      const plain = toPlainSelectors(selector, key);
+
+      rules += toCss(plain, styles[key as keyof PastelStyles] as PastelStyles);
       continue;
     } else {
       const polyfill = toPolyfill[key as keyof ToPolyfillType];

@@ -6,6 +6,8 @@ export type PastelStyles = CSS.Properties<string | number> & {
   [K in `${CSS.AtRules} ${string}`]?: CSS.Properties<string | number>;
 } & {
   [K in `--${string}`]?: string | number;
+} & {
+  [K in `&${string}`]?: CSS.Properties<string | number>;
 };
 
 export type PastelCssOptions = {
