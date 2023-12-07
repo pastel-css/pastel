@@ -1,3 +1,3 @@
-const isNestedSelectorLike = (rule: string) => rule.startsWith("&");
+const isNestedSelectorLike = (rule: string) => rule.includes("&");
 
 export default isNestedSelectorLike;
