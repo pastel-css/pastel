@@ -119,6 +119,11 @@ const toCss = (selectors: string | string[], styles: PastelStyles) => {
         continue;
       }
 
+      if (typeof styles[key as keyof PastelStyles] === "object") {
+        props += toCss(key, styles[key as keyof PastelStyles] as PastelStyles);
+        continue;
+      }
+
       props += `${toKebabCase(key)}: ${parseValue(
         key,
         styles[key as keyof PastelStyles] as string | number
